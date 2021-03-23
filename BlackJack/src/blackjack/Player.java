@@ -104,6 +104,18 @@ public class Player {
         playerCards.clear();
     }
     
+    public String CanDouble(String DealerCard , int score) {
+    
+        if(playerBet > playerChips) {
+            System.out.println("You do not have the chips to bet this amount!");
+            decision(DealerCard , score);
+            return "stay";
+        }
+        else 
+            playerBet += playerBet;
+            return "hit";
+    }
+    
     public boolean checkBlackJack(int score) {
         if(score == 21)
             return true;
@@ -131,9 +143,7 @@ public class Player {
         if(input.contains("hit")) 
             return "hit";
         else if(input.contains("double")) {
-            doubled = true;
-            playerBet += (playerBet * 2);
-            return "hit";
+            return CanDouble(DealersShownCard, score);
         }
         else if(input.contains("stay"))
             return "stay";
